@@ -1,79 +1,192 @@
-# Welcome to React Router!
+Magnus Institute — North American Repository (NAR)
 
-A modern, production-ready template for building full-stack React applications using React Router.
+An American-branch inspired fan fiction generator for The Magnus Archives.
 
-## Features
+This project ingests transcripts from all 200 episodes and uses Cloudflare-native infrastructure (Workers, D1, R2, Vectorize, Workers AI) to generate new archival statements set in the United States.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+The system preserves the tone, cadence, and structural feel of the original series while allowing:
 
-## Getting Started
+Season-aware storytelling
 
-### Installation
+Canon character toggles
 
-Install the dependencies:
+Fear selection (manual or randomized)
 
-```bash
+Episode-specific contextual grounding
+
+Iterative revision and regeneration
+
+A searchable catalog of generated works
+
+Architecture
+
+This project is fully Cloudflare-native and designed to run on the Workers Free plan.
+
+Frontend
+
+Cloudflare Pages
+
+React + TypeScript
+
+Tailwind CSS
+
+Modern admin dashboard + generation interface
+
+Backend
+
+Cloudflare Workers (REST API)
+
+D1 (relational metadata storage)
+
+R2 (transcripts + generated outputs)
+
+Vectorize (semantic retrieval via embeddings)
+
+Workers AI (LLM + embeddings)
+
+Core Features
+Transcript Ingestion
+
+Upload single or multiple transcripts
+
+Track ingestion status
+
+Chunk + embed into Vectorize
+
+Status dashboard
+
+Generation Controls
+
+Select season (1–5)
+
+Canon mode:
+
+None
+
+Cameo
+
+Full integration
+
+Fear selection:
+
+Manual selection
+
+Randomized (with optional lock)
+
+Episode filter:
+
+All episodes
+
+Specific episode grounding
+
+Output length selection
+
+Iterative Revision
+
+Suggest edits
+
+Regenerate new version
+
+Maintain version history
+
+Library
+
+Searchable catalog
+
+Metadata-driven filtering
+
+Version tracking
+
+Development Setup
+1. Install dependencies
 npm install
-```
 
-### Development
+2. Configure Cloudflare resources
 
-Start the development server with HMR:
+You must manually create:
 
-```bash
+D1 database (tma_db)
+
+R2 buckets:
+
+tma-transcripts
+
+tma-generated
+
+Vectorize index (tma_vectors)
+
+Enable Workers AI
+
+After creating them, update wrangler.toml with the appropriate bindings.
+
+3. Run locally
 npm run dev
-```
 
-Your application will be available at `http://localhost:5173`.
 
-## Previewing the Production Build
+Note: Workers AI calls during local development count against daily limits.
 
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-Deployment is done using the Wrangler CLI.
-
-To build and deploy directly to production:
-
-```sh
+4. Deploy
 npm run deploy
-```
 
-To deploy a preview URL:
 
-```sh
-npx wrangler versions upload
-```
+Or connect the repository to Cloudflare Pages for automatic deploys.
 
-You can then promote a version to production after verification or roll it out progressively.
+Project Structure
+/app                → React Router frontend
+/api                → Worker API routes
+/migrations         → D1 schema
+/lib                → Shared utilities (AI, chunking, retrieval)
+/types              → Shared types
+wrangler.toml      → Worker configuration
 
-```sh
-npx wrangler versions deploy
-```
+Design Philosophy
 
-## Styling
+This project is designed around three principles:
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+Atmospheric fidelity
+The output should feel archival, restrained, and structured — not chaotic LLM horror.
 
----
+Context-aware storytelling
+Generation is grounded in ingested transcript embeddings.
 
-Built with ❤️ using React Router.
+Iterative authorship
+Users collaborate with the model — not just prompt it.
+
+American Branch Setting
+
+Primary archive branch:
+
+Magnus Institute — North American Repository
+Location: Chicago, Illinois
+Archivist: Dr. Maren Cole
+
+Stories are generated using American geography, institutions, and cultural references unless otherwise configured.
+
+Roadmap
+
+Fear tagging at chunk-level
+
+Multi-user auth
+
+Streaming generation UI
+
+Fear analytics dashboard
+
+Public anthology mode
+
+Export formats (PDF, EPUB)
+
+Thematic arc continuity tracking
+
+Legal Note
+
+This is a fan project inspired by The Magnus Archives.
+All original source material remains property of its creators.
+
+This system does not redistribute transcripts and is intended for transformative fan fiction generation only.
+
+Status
+
+Early-stage prototype.
+Architecture stable.
+Feature set expanding.
