@@ -1,192 +1,158 @@
-Magnus Institute — North American Repository (NAR)
+# Magnus Institute — North American Repository (NAR)
 
-An American-branch inspired fan fiction generator for The Magnus Archives.
+An American-branch inspired fan fiction generator for *The Magnus Archives*.
 
 This project ingests transcripts from all 200 episodes and uses Cloudflare-native infrastructure (Workers, D1, R2, Vectorize, Workers AI) to generate new archival statements set in the United States.
 
 The system preserves the tone, cadence, and structural feel of the original series while allowing:
 
-Season-aware storytelling
+- Season-aware storytelling
+- Canon character toggles
+- Fear selection (manual or randomized)
+- Episode-specific contextual grounding
+- Iterative revision and regeneration
+- A searchable catalog of generated works
 
-Canon character toggles
-
-Fear selection (manual or randomized)
-
-Episode-specific contextual grounding
-
-Iterative revision and regeneration
-
-A searchable catalog of generated works
-
-Architecture
+## Architecture
 
 This project is fully Cloudflare-native and designed to run on the Workers Free plan.
 
-Frontend
+### Frontend
 
-Cloudflare Pages
+- Cloudflare Pages
+- React + TypeScript
+- Tailwind CSS
+- Modern admin dashboard + generation interface
 
-React + TypeScript
+### Backend
 
-Tailwind CSS
+- Cloudflare Workers (REST API)
+- D1 (relational metadata storage)
+- R2 (transcripts + generated outputs)
+- Vectorize (semantic retrieval via embeddings)
+- Workers AI (LLM + embeddings)
 
-Modern admin dashboard + generation interface
+## Core Features
 
-Backend
+### Transcript Ingestion
 
-Cloudflare Workers (REST API)
+- Upload single or multiple transcripts
+- Track ingestion status
+- Chunk + embed into Vectorize
+- Status dashboard
 
-D1 (relational metadata storage)
+### Generation Controls
 
-R2 (transcripts + generated outputs)
+- Select season (1–5)
+- Canon mode:
+  - None
+  - Cameo
+  - Full integration
+- Fear selection:
+  - Manual selection
+  - Randomized (with optional lock)
+- Episode filter:
+  - All episodes
+  - Specific episode grounding
+- Output length selection
 
-Vectorize (semantic retrieval via embeddings)
+### Iterative Revision
 
-Workers AI (LLM + embeddings)
+- Suggest edits
+- Regenerate new version
+- Maintain version history
 
-Core Features
-Transcript Ingestion
+### Library
 
-Upload single or multiple transcripts
+- Searchable catalog
+- Metadata-driven filtering
+- Version tracking
 
-Track ingestion status
+## Development Setup
 
-Chunk + embed into Vectorize
+1. **Install dependencies**
 
-Status dashboard
+   ```bash
+   npm install
+   ```
 
-Generation Controls
+2. **Configure Cloudflare resources**
 
-Select season (1–5)
+   You must manually create:
 
-Canon mode:
+   - D1 database (`tma_db`)
+   - R2 buckets:
+     - `tma-transcripts`
+     - `tma-generated`
+   - Vectorize index (`tma_vectors`)
+   - Enable Workers AI
 
-None
+   After creating them, update `wrangler.toml` with the appropriate bindings.
 
-Cameo
+3. **Run locally**
 
-Full integration
+   ```bash
+   npm run dev
+   ```
 
-Fear selection:
+   Note: Workers AI calls during local development count against daily limits.
 
-Manual selection
+4. **Deploy**
 
-Randomized (with optional lock)
+   ```bash
+   npm run deploy
+   ```
 
-Episode filter:
+   Or connect the repository to Cloudflare Pages for automatic deploys.
 
-All episodes
+## Project Structure
 
-Specific episode grounding
-
-Output length selection
-
-Iterative Revision
-
-Suggest edits
-
-Regenerate new version
-
-Maintain version history
-
-Library
-
-Searchable catalog
-
-Metadata-driven filtering
-
-Version tracking
-
-Development Setup
-1. Install dependencies
-npm install
-
-2. Configure Cloudflare resources
-
-You must manually create:
-
-D1 database (tma_db)
-
-R2 buckets:
-
-tma-transcripts
-
-tma-generated
-
-Vectorize index (tma_vectors)
-
-Enable Workers AI
-
-After creating them, update wrangler.toml with the appropriate bindings.
-
-3. Run locally
-npm run dev
-
-
-Note: Workers AI calls during local development count against daily limits.
-
-4. Deploy
-npm run deploy
-
-
-Or connect the repository to Cloudflare Pages for automatic deploys.
-
-Project Structure
+```
 /app                → React Router frontend
 /api                → Worker API routes
 /migrations         → D1 schema
 /lib                → Shared utilities (AI, chunking, retrieval)
 /types              → Shared types
-wrangler.toml      → Worker configuration
+wrangler.toml       → Worker configuration
+```
 
-Design Philosophy
+## Design Philosophy
 
 This project is designed around three principles:
 
-Atmospheric fidelity
-The output should feel archival, restrained, and structured — not chaotic LLM horror.
+- **Atmospheric fidelity**: The output should feel archival, restrained, and structured — not chaotic LLM horror.
+- **Context-aware storytelling**: Generation is grounded in ingested transcript embeddings.
+- **Iterative authorship**: Users collaborate with the model — not just prompt it.
 
-Context-aware storytelling
-Generation is grounded in ingested transcript embeddings.
-
-Iterative authorship
-Users collaborate with the model — not just prompt it.
-
-American Branch Setting
+## American Branch Setting
 
 Primary archive branch:
 
-Magnus Institute — North American Repository
-Location: Chicago, Illinois
-Archivist: Dr. Maren Cole
+- **Magnus Institute — North American Repository**
+- **Location:** Chicago, Illinois
+- **Archivist:** Dr. Maren Cole
 
 Stories are generated using American geography, institutions, and cultural references unless otherwise configured.
 
-Roadmap
+## Roadmap
 
-Fear tagging at chunk-level
+- Fear tagging at chunk-level
+- Multi-user auth
+- Streaming generation UI
+- Fear analytics dashboard
+- Public anthology mode
+- Export formats (PDF, EPUB)
+- Thematic arc continuity tracking
 
-Multi-user auth
+## Legal Note
 
-Streaming generation UI
-
-Fear analytics dashboard
-
-Public anthology mode
-
-Export formats (PDF, EPUB)
-
-Thematic arc continuity tracking
-
-Legal Note
-
-This is a fan project inspired by The Magnus Archives.
+This is a fan project inspired by *The Magnus Archives*.
 All original source material remains property of its creators.
 
 This system does not redistribute transcripts and is intended for transformative fan fiction generation only.
 
-Status
+## Status
 
-Early-stage prototype.
-Architecture stable.
-Feature set expanding.
+- Early-stage prototype
+- Architecture stable
+- Feature set expanding
