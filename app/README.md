@@ -1,5 +1,6 @@
 # Frontend (React + TypeScript)
 
+This app is scaffolded with Vite + React Router and uses Tailwind CSS for styling.
 This app is scaffolded with Vite + React Router and provides a minimal landing view for the NAR dashboard.
 
 ## Local development
