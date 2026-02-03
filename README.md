@@ -89,6 +89,19 @@ This project is fully Cloudflare-native and designed to run on the Workers Free 
 
    After creating them, update `wrangler.toml` with the appropriate bindings.
 
+   **Vectorize setup details**
+
+   - **Index name:** `tma_vectors`
+   - **Dimensions:** match your embedding model output (for Workers AI `@cf/baai/bge-base-en-v1.5`, use `768`)
+   - **Distance metric:** cosine
+   - **Schema (metadata fields to store alongside vectors):**
+     - `episode`: string (e.g., `MAG_001`)
+     - `season`: number (1–5)
+     - `chunk_index`: number
+     - `source`: string (`transcript` or `generated`)
+     - `statement_id`: string (UUID or D1 row id)
+   - **Recommended metadata payload:** store `episode`, `season`, `chunk_index`, `source`, and `statement_id` on every vector so you can filter by season/episode when retrieving context.
+
 3. **Run locally**
 
    ```bash
