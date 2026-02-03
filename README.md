@@ -96,6 +96,7 @@ This project is fully Cloudflare-native and designed to run on the Workers Free 
      - `@cf/baai/bge-base-en-v1.5` → `768`
      - `@cf/baai/bge-large-en-v1.5` → `1024`
      - If you choose a different model, check its embedding dimension in the Cloudflare model card and use that value.
+   - **Dimensions:** match your embedding model output (for Workers AI `@cf/baai/bge-base-en-v1.5`, use `768`)
    - **Distance metric:** cosine
    - **Schema (metadata fields to store alongside vectors):**
      - `episode`: string (e.g., `MAG_001`)
