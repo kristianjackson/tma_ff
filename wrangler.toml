@@ -7,7 +7,7 @@ compatibility_date = "2024-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "tma_db"
-database_id = "<D1_DATABASE_ID>"
+database_id = "9a3ab350-8b17-4314-89e6-a3cf8828084b"
 
 [[r2_buckets]]
 binding = "TRANSCRIPTS_BUCKET"
