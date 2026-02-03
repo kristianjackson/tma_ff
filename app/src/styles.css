@@ -1,0 +1,74 @@
+:root {
+  color-scheme: dark;
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #0b0c10;
+  color: #f5f3ef;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+  display: grid;
+  gap: 32px;
+}
+
+.hero {
+  display: grid;
+  gap: 12px;
+  padding: 32px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #15171c, #0f1014);
+  border: 1px solid #22242b;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  color: #f0c674;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  color: #c6c2b7;
+  max-width: 520px;
+}
+
+.panel-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.panel {
+  padding: 20px;
+  border-radius: 12px;
+  background: #121318;
+  border: 1px solid #1f222a;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.panel h2 {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+.panel p {
+  color: #b9b4a8;
+}
