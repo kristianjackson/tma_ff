@@ -1,0 +1,25 @@
+name = "tma-nar"
+main = "api/src/index.ts"
+compatibility_date = "2024-01-01"
+
+# TODO: Update these bindings after creating the resources.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tma_db"
+database_id = "9a3ab350-8b17-4314-89e6-a3cf8828084b"
+
+[[r2_buckets]]
+binding = "TRANSCRIPTS_BUCKET"
+bucket_name = "tma-transcripts"
+
+[[r2_buckets]]
+binding = "GENERATED_BUCKET"
+bucket_name = "tma-generated"
+
+[[vectorize]]
+binding = "TMA_VECTORS"
+index_name = "tma_vectors"
+
+[ai]
+binding = "AI"
