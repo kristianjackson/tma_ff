@@ -92,6 +92,10 @@ This project is fully Cloudflare-native and designed to run on the Workers Free 
    **Vectorize setup details**
 
    - **Index name:** `tma_vectors`
+   - **Dimensions:** match your embedding model output. If you plan to use Workers AI embeddings:
+     - `@cf/baai/bge-base-en-v1.5` → `768`
+     - `@cf/baai/bge-large-en-v1.5` → `1024`
+     - If you choose a different model, check its embedding dimension in the Cloudflare model card and use that value.
    - **Dimensions:** match your embedding model output (for Workers AI `@cf/baai/bge-base-en-v1.5`, use `768`)
    - **Distance metric:** cosine
    - **Schema (metadata fields to store alongside vectors):**
@@ -101,6 +105,23 @@ This project is fully Cloudflare-native and designed to run on the Workers Free 
      - `source`: string (`transcript` or `generated`)
      - `statement_id`: string (UUID or D1 row id)
    - **Recommended metadata payload:** store `episode`, `season`, `chunk_index`, `source`, and `statement_id` on every vector so you can filter by season/episode when retrieving context.
+
+   **Create the Vectorize index from the command line**
+
+   1. Install and authenticate the Wrangler CLI if you haven't already:
+
+      ```bash
+      npm install -g wrangler
+      wrangler login
+      ```
+
+   2. Create the index (example shown with `768` dimensions for `@cf/baai/bge-base-en-v1.5`):
+
+      ```bash
+      wrangler vectorize create tma_vectors --dimensions=768 --metric=cosine
+      ```
+
+   3. If you choose a different embedding model, update the `--dimensions` value to match that model's output.
 
 3. **Run locally**
 
